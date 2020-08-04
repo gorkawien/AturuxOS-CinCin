@@ -15,14 +15,13 @@ ENTER.\nAlternate keys may also be used: '+', '-', and TAB." 7 70
 check_connection() {
   dialog --infobox "Checking internet connection..." 3 50
   # Check if a web page is available
-if ! nc -zw1 archlinux.org 443; then
-dialog --title "Connect to the Internet" \
+  if ! nc -zw1 archlinux.org 443; then
+    dialog --title "Connect to the Internet" \
       --msgbox "The installer was unable to detect a working internet \
 connection. The installation media supports wired network devices on \
 boot. Make sure the cable is plugged in. Wireless users should use the \
-'wifi-menu' command and follow the on-screen instructions to connect to \
-a wireless connection.\n\nOnce you have a working internet connection, \
-retry running the installer." 10 80
+'iwctl' command to connect to a wireless connection.\n\nOnce you have \
+a working internet connection, retry running the installer." 10 80
     reset ; exit 1
   fi
 }
@@ -772,7 +771,7 @@ applications that integrate well with the Budgie desktop." 8 60
                   DESKTOP_PACKAGES+=('gnome')
                 fi
                 xinit_config="export XDG_CURRENT_DESKTOP=Budgie:GNOME ; exec budgie-desktop"
-                ;;
+                   ;;
       "Cinnamon") DESKTOP_PACKAGES+=('cinnamon' 'cinnamon-translations' 'nemo-fileroller' 'kodi-x11' 'qalculate-gtk' 'w3m' 'qastools' 'pulseaudio-equalizer-ladspa' 'gnome-system-monitor' 'tilix' 'plank' 'evince' 'avidemux-qt' 'geany' 'geany-plugins' 'firefox' 'sysstat' 'thunderbird' 'telegram-desktop' 'bashtop' 'fractal' 'lollypop' 'gnome-screenshot' 'transmission-gtk' 'vlc' 'gpicview' 'kodi' 'simplescreenrecorder' 'cheese' 'aria2' 'pdfarranger' 'hplip' 'git' 'wget' 'neofetch' 'nano' 'reflector' 'p7zip' 'sharutils' 'youtube-dl' 'mesa-demos' 'tree' 'bind-tools' 'dmidecode' 'hddtemp' 'jshon' 'expac' 'cups' 'cups-pdf' 'xorg-xinit' 'inetutils' 'keepassxc' 'speedtest-cli' 'wavemon' 'cronie' 'uget' 'usbutils' 'bash-completion' 'pacman-contrib' 'calibre' 'cpio')
                   xinit_config="exec cinnamon-session"
                   ;;
@@ -784,7 +783,7 @@ applications that integrate well with the GNOME desktop." 8 60
                  DESKTOP_PACKAGES+=('gnome-extra')
                fi
                xinit_config="exec gnome-session"
-               ;;
+                       ;;
       "KDE Plasma") DESKTOP_PACKAGES+=('plasma')
                     dialog --title "Install Extras" --yesno "Would you like \
 to install the 'kde-applications' group?\n\nIt contains additional utilities \
@@ -959,7 +958,7 @@ $hypervisor\n\nAny required drivers or utilities will be \
 installed for you." 7 70
       case "$hypervisor" in
         "vmware") DESKTOP_PACKAGES+=('open-vm-tools' 'xf86-video-vmware' 'xf86-input-vmmouse' 'mesa' 'gtkmm' 'gtkmm3') ;;
-        "oracle") DESKTOP_PACKAGES+=('virtualbox-guest-utils' 'virtualbox-guest-modules-arch') ;;
+        "oracle") DESKTOP_PACKAGES+=('virtualbox-guest-utils' 'virtualbox-guest-dkms') ;;
         "parallels") DESKTOP_PACKAGES+=('xf86-video-vesa') ;;
         *) DESKTOP_PACKAGES+=('xf86-video-fbdev') ;;
       esac
