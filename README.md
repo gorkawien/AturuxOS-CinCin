@@ -1,6 +1,6 @@
 # AturuxOS-CinCin
 
-Aturux-OS ist a personal modification (added some extra software to Cinnamon) of the original arch-setup:
+AturuxOS-CinCin ist a personal modification (added some extra software to Cinnamon) of the original arch-setup:
 https://github.com/jorgeluiscarrillo/arch-setup
 
 arch-setup is a console menu based (TUI) install script for Arch Linux.
